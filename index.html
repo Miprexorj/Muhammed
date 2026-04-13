@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>İyi Ki Doğdun!</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+        }
+#bg-video {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Tam merkezleme */
+    width: 100%; /* İstediğin boyuta göre değiştir */
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+    border-radius: 15px; /* Kenarları yumuşat, bari bir şeye benzesin */
+}
+
+
+
+        /* İçerik Katmanı */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4); /* Videoyu hafif karartır */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 4px solid #00ffcc;
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 0 30px rgba(0, 255, 204, 0.5);
+            animation: bounce 2s infinite;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin: 10px 0;
+            text-shadow: 0 0 15px rgba(0,0,0,1);
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        /* Müzik Kontrolü (Görünmez ama çalışır) */
+        #music-btn {
+            margin-top: 20px;
+            padding: 10px 25px;
+            background: #00ffcc;
+            color: #000;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+    </style>
+</head>
+<body>
+
+    <video autoplay muted loop id="bg-video">
+        <source src="dogum.mp4" type="video/mp4">
+    </video>
+
+    <audio id="birthday-audio" loop>
+        <source src="dogum.mp3" type="audio/mpeg">
+    </audio>
+
+    <div class="overlay">
+        <img src="dogum.jpg" alt="Doğum Günü" class="profile-img">
+        <h1>İYİ Kİ DOĞDUN</h1>
+        <p>nice mutlu yıllara abim</p>
+        
+        <button id="music-btn" onclick="playMusic()">Müziği Başlat 🎵</button>
+    </div>
+
+    <script>
+        function playMusic() {
+            var audio = document.getElementById("birthday-audio");
+            var btn = document.getElementById("music-btn");
+            
+            if (audio.paused) {
+                audio.play();
+                btn.innerHTML = "Müziği Durdur ⏸️";
+            } else {
+                audio.pause();
+                btn.innerHTML = "Müziği Başlat 🎵";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
